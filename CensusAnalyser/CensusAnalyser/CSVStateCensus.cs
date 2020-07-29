@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CensusAnalyser
 {
-    class CSVStateCensus
+    public class CSVStateCensus
     {
         public static int GetRecord(string path)
         {
