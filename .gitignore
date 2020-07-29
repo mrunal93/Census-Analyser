@@ -1,0 +1,7 @@
+CensusAnalyser/.vs/
+CensusAnalyser/CensusAnalyser.sln
+CensusAnalyser/CensusAnalyser/CensusAnalyser.csproj
+CensusAnalyser/CensusAnalyser/IndiaStateCensusData.csv
+CensusAnalyser/CensusAnalyser/obj/
+CensusAnalyser/CensusAnalyserTest/CensusAnalyserTest.csproj
+CensusAnalyser/CensusAnalyserTest/obj/
