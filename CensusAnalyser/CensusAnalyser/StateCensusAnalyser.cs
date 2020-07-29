@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CensusAnalyser
 {
-    class StateCensusAnalyser
+    public class StateCensusAnalyser
     {
         readonly string filePath;
         public StateCensusAnalyser(string filePath)
