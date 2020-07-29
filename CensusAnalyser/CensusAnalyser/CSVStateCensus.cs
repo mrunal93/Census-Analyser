@@ -9,14 +9,21 @@ namespace CensusAnalyser
     {
         public static int GetRecord(string path)
         {
-            int count = 0;
-            string[] data = File.ReadAllLines(path);
-            IEnumerable<string> record = data;
-            foreach(var element in record)
+            try
             {
-                count++;
+                int count = 0;
+                string[] data = File.ReadAllLines(path);
+                IEnumerable<string> record = data;
+                foreach (var element in record)
+                {
+                    count++;
+                }
+                return count - 1;
             }
-            return count - 1;
+            catch (DirectoryNotFoundException )
+            {
+                throw new Exception("Invalid Directory");
+            }
         }
     }
 }

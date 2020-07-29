@@ -16,8 +16,15 @@ namespace CensusAnalyser
 
         public static int GetStateCensusRecord(string filePath)
         {
-            string[] numberOfRecords = File.ReadAllLines(filePath);
-            return numberOfRecords.Length - 1;
+            try
+            {
+                string[] numberOfRecords = File.ReadAllLines(filePath);
+                return numberOfRecords.Length - 1;
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                throw new Exception("Invalid Directory");
+            }
         }
 
         public static void PrintData(string filePath)
