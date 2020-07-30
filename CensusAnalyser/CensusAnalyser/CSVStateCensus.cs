@@ -31,6 +31,13 @@ namespace CensusAnalyser
                 return count - 1;
         }
 
+        public static int GetReordsForCsvFile(string path)
+        {
+            string[] noOfRecordsForIndianCensus = File.ReadAllLines(path);
+            return noOfRecordsForIndianCensus.Length - 1;
+           
+        }
+
 
         public static void WrongPath(string path,string wrongPath)
         {
