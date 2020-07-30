@@ -16,6 +16,10 @@ namespace CensusAnalyser
                 IEnumerable<string> record = data;
                 foreach (var element in record)
                 {
+                    if (!element.Contains(","))
+                    {
+                        throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT,"Delimeter is Incorrect ");
+                    }
                     count++;
                 }
                 return count - 1;
