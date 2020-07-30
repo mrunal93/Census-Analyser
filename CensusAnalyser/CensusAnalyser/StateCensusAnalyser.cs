@@ -20,7 +20,7 @@ namespace CensusAnalyser
             try
             {
                 string[] numberOfRecords = File.ReadAllLines(filePath);
-                return numberOfRecords.Length ;
+                return numberOfRecords.Length -1 ;
             }
             catch (DirectoryNotFoundException e)
             {

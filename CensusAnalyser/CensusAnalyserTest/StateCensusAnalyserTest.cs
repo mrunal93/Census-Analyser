@@ -14,7 +14,15 @@ namespace CensusAnalyserTest
       
 
         [Test]
-        
+        public void GivenCsvData_WhenLoaded_ShouldReturnTrue()
+        {
+            int noOfRecdordsForIndiaCensus = CSVStateCensus.GetReordsForCsvFile(INDIAN_CENSUS_FILEPATH);
+            int noOfRecordsForIndiaState = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_FILEPATH);
+            Assert.AreEqual(noOfRecdordsForIndiaCensus, noOfRecordsForIndiaState);
+        }
+
+
+        [Test]
         public void GivenIvalidPath_WhenLoaded_ShouldReturnExceptionMessage()
         {
             CensusAnalyserException exception = Assert.Throws<CensusAnalyser.CensusAnalyserException>(() => CSVStateCensus.WrongPath(INDIAN_CENSUS_FILEPATH,WRONG_FILEPATH));
