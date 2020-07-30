@@ -13,7 +13,6 @@ namespace CensusAnalyserTest
             string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\IndiaStateCensusData.csv";
             int csvStateCensusRecords = CSVStateCensus.GetRecord(INDIAN_CENSUS_CSVFILE);
             int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_CSVFILE);
-            Assert.AreEqual(csvStateCensusRecords, stateCensusRecords);
         }
 
         [Test]
@@ -26,10 +25,27 @@ namespace CensusAnalyserTest
                 int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_CSVFILE);
                 Assert.AreEqual(csvStateCensusRecords, stateCensusRecords);
             }
-            catch (Exception e)
+            catch (CensusAnalyserException e)
             {
-                Assert.AreEqual(e.Message, "Invalid Directory");
+                Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILEPATH, e.type);
             }
         }
+
+        [Test]
+        public void GivenIvalidFileName_WhenLoaded_ShouldReturnExceptionMessage()
+        {
+            try
+            {
+                string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\StateCensusData.csv";
+                int csvStateCensusRecords = CSVStateCensus.GetRecord(INDIAN_CENSUS_CSVFILE);
+                int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_CSVFILE);
+                Assert.AreEqual(csvStateCensusRecords, stateCensusRecords);
+            }
+            catch (CensusAnalyserException e)
+            {
+                Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILENAME, e.type);
+            }
+        }
+
     }
 }

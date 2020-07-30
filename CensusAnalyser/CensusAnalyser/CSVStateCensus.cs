@@ -20,9 +20,13 @@ namespace CensusAnalyser
                 }
                 return count - 1;
             }
-            catch (DirectoryNotFoundException )
+            catch (DirectoryNotFoundException e)
             {
-                throw new Exception("Invalid Directory");
+                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILEPATH, e.Message);
+            }
+            catch (FileNotFoundException e)
+            {
+                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILENAME, e.Message);
             }
         }
     }

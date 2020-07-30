@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace CensusAnalyser
@@ -23,19 +24,25 @@ namespace CensusAnalyser
             }
             catch (DirectoryNotFoundException e)
             {
-                throw new Exception("Invalid Directory");
+                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILEPATH,e.Message);
             }
-        }
-
-        public static void PrintData(string filePath)
-        {
-            string[] numberOfRecords = File.ReadAllLines(filePath);
-            foreach (var element in numberOfRecords)
+            catch(FileNotFoundException e)
             {
-                Console.WriteLine(element);
-
+                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILENAME, e.Message);
             }
-
         }
+
+        //public static void PrintData(string filePath)
+        //{
+        //    string[] numberOfRecords = File.ReadAllLines(filePath);
+        //    foreach (var element in numberOfRecords)
+        //    {
+        //        Console.WriteLine(element);
+
+        //    }
+
+        //}
+
+       
     }
 }
