@@ -7,6 +7,7 @@ namespace CensusAnalyser
 {
     public class CSVStateCensus
     {
+        
         public static int GetRecord(string path)
         {
             try
@@ -31,6 +32,17 @@ namespace CensusAnalyser
             catch (FileNotFoundException e)
             {
                 throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILENAME, e.Message);
+            }
+        }
+       
+        public static void GetFileHeader(string filePath)
+        {
+            string[] csvData = File.ReadAllLines(filePath);
+            string[] alternateCsvData = File.ReadAllLines(filePath);
+            IEnumerable<string> records = csvData;
+            if (csvData[0] != alternateCsvData[0])
+            {
+                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.HEADER_NOT_MATCH, "Header Invalid");
             }
         }
     }

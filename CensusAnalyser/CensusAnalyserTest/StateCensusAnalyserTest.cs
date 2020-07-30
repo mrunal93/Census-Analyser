@@ -55,8 +55,6 @@ namespace CensusAnalyserTest
             {
                 string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\IndiaStateCensusData.csv";
                 int csvStateCensusRecords = CSVStateCensus.GetRecord(INDIAN_CENSUS_CSVFILE);
-                int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_CSVFILE);
-                Assert.AreEqual(csvStateCensusRecords, stateCensusRecords);
             }
             catch (CensusAnalyserException e)
             {
@@ -64,5 +62,18 @@ namespace CensusAnalyserTest
             }
         }
 
+        [Test]
+        public void GivenIvalidFileHeader_WhenLoaded_ShouldReturnExceptionMessage()
+        {
+            try
+            {
+                string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\IndiaStateCensusData.csv";
+                int csvStateCensusRecords = CSVStateCensus.GetRecord(INDIAN_CENSUS_CSVFILE);
+            }
+            catch (CensusAnalyserException e)
+            {
+                Assert.AreEqual(CensusAnalyserException.ExceptionType.HEADER_NOT_MATCH, e.type);
+            }
+        }
     }
 }
