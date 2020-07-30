@@ -8,39 +8,43 @@ namespace CensusAnalyser
     public class CSVStateCensus
     {
         readonly string path;
-        public static int GetRecord(string path)
+        readonly string wrongPath;
+        public static int GetRecord(string path )
         {
-            try
-            {
+            
+                if (!path.EndsWith(".csv"))
+                {
+                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILENAME,"INvalid File Name");
+                }
                 int count = 0;
                 string[] data = File.ReadAllLines(path);
                 IEnumerable<string> record = data;
                 foreach (var element in record)
                 {
-                    if (!element.Contains(","))
+                    if (!element.Contains(":"))
                     {
-                        throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT,"Delimeter is Incorrect ");
+                        
+                        throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT, "Delimeter is Incorrect ");
                     }
-                    count++;
+                    
                 }
                 return count - 1;
-            }
-            catch (DirectoryNotFoundException e)
+        }
+
+
+        public static void WrongPath(string path,string wrongPath)
+        {
+            if (path != wrongPath)
             {
-                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILEPATH, e.Message);
-            }
-            catch (FileNotFoundException e)
-            {
-                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILENAME, e.Message);
+                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILEPATH, "Invalid File Path");
             }
         }
-       
+
         public static void GetFileHeader(string filePath)
         {
             string[] csvData = File.ReadAllLines(filePath);
-            string[] alternateCsvData = File.ReadAllLines(filePath);
-            IEnumerable<string> records = csvData;
-            if (csvData[0] != alternateCsvData[0])
+            string CSV_DATA_HEADER = "State, Population, AreaInSqKm, DensityPerSqKm";
+            if (csvData[0] != CSV_DATA_HEADER)
             {
                 throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.HEADER_NOT_MATCH, "Header Invalid");
             }

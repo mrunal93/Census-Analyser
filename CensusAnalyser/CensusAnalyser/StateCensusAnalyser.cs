@@ -20,7 +20,7 @@ namespace CensusAnalyser
             try
             {
                 string[] numberOfRecords = File.ReadAllLines(filePath);
-                return numberOfRecords.Length - 1;
+                return numberOfRecords.Length ;
             }
             catch (DirectoryNotFoundException e)
             {
@@ -32,19 +32,19 @@ namespace CensusAnalyser
             }
         }
 
-        
 
-        //public static void PrintData(string filePath)
-        //{
-        //    string[] numberOfRecords = File.ReadAllLines(filePath);
-        //    foreach (var element in numberOfRecords)
-        //    {
-        //        Console.WriteLine(element);
 
-        //    }
+        public static void PrintData(string filePath)
+        {
+            string[] numberOfRecords = File.ReadAllLines(filePath);
+            foreach (var element in numberOfRecords)
+            {
+                Console.WriteLine(element);
 
-        //}
+            }
 
-       
+        }
+
+
     }
 }
