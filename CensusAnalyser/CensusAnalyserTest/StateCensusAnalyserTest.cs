@@ -13,6 +13,7 @@ namespace CensusAnalyserTest
             string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\IndiaStateCensusData.csv";
             int csvStateCensusRecords = CSVStateCensus.GetRecord(INDIAN_CENSUS_CSVFILE);
             int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_CSVFILE);
+            Assert.AreEqual(stateCensusRecords, csvStateCensusRecords);
         }
 
         [Test]
@@ -44,6 +45,22 @@ namespace CensusAnalyserTest
             catch (CensusAnalyserException e)
             {
                 Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILENAME, e.type);
+            }
+        }
+        
+        [Test]
+        public void GivenIvalidDelimiter_WhenLoaded_ShouldReturnExceptionMessage()
+        {
+            try
+            {
+                string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\IndiaStateCensusData.csv";
+                int csvStateCensusRecords = CSVStateCensus.GetRecord(INDIAN_CENSUS_CSVFILE);
+                int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_CSVFILE);
+                Assert.AreEqual(csvStateCensusRecords, stateCensusRecords);
+            }
+            catch (CensusAnalyserException e)
+            {
+                Assert.AreEqual(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT, e.type);
             }
         }
 
