@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CensusAnalyser
 {
-    public class CSVStateCensus
+    public class CSVstate
     {
         readonly string path;
         public static int GetRecord(string path)
@@ -19,7 +19,7 @@ namespace CensusAnalyser
                 {
                     if (!element.Contains(","))
                     {
-                        throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT,"Delimeter is Incorrect ");
+                        throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT, "Delimeter is Incorrect ");
                     }
                     count++;
                 }
@@ -34,7 +34,7 @@ namespace CensusAnalyser
                 throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILENAME, e.Message);
             }
         }
-       
+
         public static void GetFileHeader(string filePath)
         {
             string[] csvData = File.ReadAllLines(filePath);
