@@ -6,143 +6,70 @@ namespace CensusAnalyserTest
 {
     public class Tests
     {
-       
-        [Test]
-        public void GivenIndiaCensusCSVFile_WhenNumberOfRecordMatch_ShouldReturnTrue()
-        {
-            string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\IndiaStateCensusData.csv";
-            int csvStateCensusRecords = CSVStateCensus.GetRecord(INDIAN_CENSUS_CSVFILE);
-            int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_CSVFILE);
-            Assert.AreEqual(stateCensusRecords, csvStateCensusRecords);
-        }
+        string INDIAN_STATE_CODE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\Resources\IndiaStateCode.csv";
+        string INDIAN_CENSUS_FILEPATH = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\Resources\IndiaStateCensusData.csv";
+        string WRONG_FILEPATH = @"C:\Users\Admin\IndiaStateCensusData";
+        string WRONG_PATH_CSVFILE_NAME = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\StateCensusData";
+
+      
 
         [Test]
+        
         public void GivenIvalidPath_WhenLoaded_ShouldReturnExceptionMessage()
         {
-            try 
-            {
-                string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\";
-                int csvStateCensusRecords = CSVStateCensus.GetRecord(INDIAN_CENSUS_CSVFILE);
-                int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_CSVFILE);
-                Assert.AreEqual(csvStateCensusRecords, stateCensusRecords);
-            }
-            catch (CensusAnalyserException e)
-            {
-                Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILEPATH, e.type);
-            }
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyser.CensusAnalyserException>(() => CSVStateCensus.WrongPath(INDIAN_CENSUS_FILEPATH,WRONG_FILEPATH));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILEPATH, exception.type);
+            
         }
 
         [Test]
         public void GivenIvalidFileName_WhenLoaded_ShouldReturnExceptionMessage()
         {
-            try
-            {
-                string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\StateCensusData.csv";
-                int csvStateCensusRecords = CSVStateCensus.GetRecord(INDIAN_CENSUS_CSVFILE);
-                int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_CSVFILE);
-                Assert.AreEqual(csvStateCensusRecords, stateCensusRecords);
-            }
-            catch (CensusAnalyserException e)
-            {
-                Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILENAME, e.type);
-            }
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => CSVStateCensus.GetRecord(WRONG_PATH_CSVFILE_NAME));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILENAME, exception.type);
         }
         
         [Test]
         public void GivenIvalidDelimiter_WhenLoaded_ShouldReturnExceptionMessage()
         {
-            try
-            {
-                string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\IndiaStateCensusData.csv";
-                int csvStateCensusRecords = CSVStateCensus.GetRecord(INDIAN_CENSUS_CSVFILE);
-            }
-            catch (CensusAnalyserException e)
-            {
-                Assert.AreEqual(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT, e.type);
-            }
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => CSVStateCensus.GetRecord(INDIAN_CENSUS_FILEPATH));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT, exception.type);
         }
 
         [Test]
         public void GivenIvalidFileHeader_WhenLoaded_ShouldReturnExceptionMessage()
         {
-            try
-            {
-                string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\IndiaStateCensusData.csv";
-                int csvStateCensusRecords = CSVStateCensus.GetRecord(INDIAN_CENSUS_CSVFILE);
-            }
-            catch (CensusAnalyserException e)
-            {
-                Assert.AreEqual(CensusAnalyserException.ExceptionType.HEADER_NOT_MATCH, e.type);
-            }
+            var exception = Assert.Throws<CensusAnalyserException>(() => CSVStateCensus.GetFileHeader(INDIAN_CENSUS_FILEPATH));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.HEADER_NOT_MATCH, exception.type);
         }
 
-        [Test]
-        public void GivenIndiaCensusCSVFileToCSVstateClass_WhenNumberOfRecordMatch_ShouldReturnTrue()
-        {
-            string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\IndiaStateCensusData.csv";
-            int csvStateCensusRecords = CSVstate.GetRecord(INDIAN_CENSUS_CSVFILE);
-            int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_CSVFILE);
-            Assert.AreEqual(stateCensusRecords, csvStateCensusRecords);
-        }
-
+       
         [Test]
         public void GivenIvalidPathToCSVstateClass_WhenLoaded_ShouldReturnExceptionMessage()
         {
-            try
-            {
-                string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\";
-                int csvStateCensusRecords = CSVstate.GetRecord(INDIAN_CENSUS_CSVFILE);
-                int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_CSVFILE);
-                Assert.AreEqual(csvStateCensusRecords, stateCensusRecords);
-            }
-            catch (CensusAnalyserException e)
-            {
-                Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILEPATH, e.type);
-            }
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => CSVstate.WrongPath(INDIAN_STATE_CODE,WRONG_FILEPATH));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILEPATH, exception.type);
         }
 
         [Test]
         public void GivenIvalidFileNameToCSVstateClass_WhenLoaded_ShouldReturnExceptionMessage()
         {
-            try
-            {
-                string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\StateCensusData.csv";
-                int csvStateCensusRecords = CSVstate.GetRecord(INDIAN_CENSUS_CSVFILE);
-                int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(INDIAN_CENSUS_CSVFILE);
-                Assert.AreEqual(csvStateCensusRecords, stateCensusRecords);
-            }
-            catch (CensusAnalyserException e)
-            {
-                Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILENAME, e.type);
-            }
+           CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => CSVStateCensus.GetRecord(WRONG_PATH_CSVFILE_NAME));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILENAME, exception.type);
         }
 
         [Test]
         public void GivenIvalidDelimiterToCSVstateClass_WhenLoaded_ShouldReturnExceptionMessage()
         {
-            try
-            {
-                string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\IndiaStateCensusData.csv";
-                int csvStateCensusRecords = CSVstate.GetRecord(INDIAN_CENSUS_CSVFILE);
-            }
-            catch (CensusAnalyserException e)
-            {
-                Assert.AreEqual(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT, e.type);
-            }
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyser.CensusAnalyserException>(() => CSVStateCensus.GetRecord(INDIAN_STATE_CODE));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT,exception.type);
         }
 
         [Test]
         public void GivenIvalidFileHeaderToCsvStateClass_WhenLoaded_ShouldReturnExceptionMessage()
         {
-            try
-            {
-                string INDIAN_CENSUS_CSVFILE = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\IndiaStateCensusData.csv";
-                int csvStateCensusRecords = CSVstate.GetRecord(INDIAN_CENSUS_CSVFILE);
-            }
-            catch (CensusAnalyserException e)
-            {
-                Assert.AreEqual(CensusAnalyserException.ExceptionType.HEADER_NOT_MATCH, e.type);
-            }
+            var exception = Assert.Throws<CensusAnalyserException>(() => CSVStateCensus.GetFileHeader(INDIAN_STATE_CODE));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.HEADER_NOT_MATCH, exception.type);
         }
     }
 }

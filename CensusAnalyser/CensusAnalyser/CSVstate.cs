@@ -8,30 +8,34 @@ namespace CensusAnalyser
     public class CSVstate
     {
         readonly string path;
+        readonly string wrongPath;
         public static int GetRecord(string path)
         {
-            try
+
+            if (!path.EndsWith(".csv"))
             {
-                int count = 0;
-                string[] data = File.ReadAllLines(path);
-                IEnumerable<string> record = data;
-                foreach (var element in record)
+                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILENAME, "INvalid File Name");
+            }
+            int count = 0;
+            string[] data = File.ReadAllLines(path);
+            IEnumerable<string> record = data;
+            foreach (var element in record)
+            {
+                if (!element.Contains(":"))
                 {
-                    if (!element.Contains(","))
-                    {
-                        throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT, "Delimeter is Incorrect ");
-                    }
-                    count++;
+                    throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT, "Delimeter is Incorrect ");
                 }
-                return count - 1;
+                count++;
             }
-            catch (DirectoryNotFoundException e)
+            return count - 1;
+        }
+
+
+        public static void WrongPath(string path, string wrongPath)
+        {
+            if (path != wrongPath)
             {
-                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILEPATH, e.Message);
-            }
-            catch (FileNotFoundException e)
-            {
-                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILENAME, e.Message);
+                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILEPATH, "Invalid File Path");
             }
         }
 
