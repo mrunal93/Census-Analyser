@@ -11,7 +11,7 @@ namespace CensusAnalyser
         }
         public enum ExceptionType
         {
-            INVALID_FILEPATH,INVALID_FILENAME,DELIMITER_INCORRECT
+            INVALID_FILEPATH,INVALID_FILENAME,DELIMITER_INCORRECT,HEADER_NOT_MATCH
         }
         public ExceptionType type;
 
