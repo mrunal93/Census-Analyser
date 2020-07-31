@@ -2,7 +2,7 @@
 
 namespace CensusAnalyser
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -17,6 +17,8 @@ namespace CensusAnalyser
             new JsonStateCensus(FILE_PATH_STATE_CENSUS).SortByStatePopullation();
             Console.WriteLine("  \n   \n  ");
             new JsonStateCensus(FILE_PATH_STATE_CENSUS).SortByStatePopullationDensity();
+            Console.WriteLine("  \n   \n  ");
+            new JsonStateCensus(FILE_PATH_STATE_CENSUS).SortByStateLagestArea();
 
 
             //int csvStateCensusRecords = CSVStateCensus.GetRecord(FILE_PATH);

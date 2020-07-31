@@ -68,5 +68,12 @@ namespace CensusAnalyser
             Console.WriteLine(JsonConvert.SerializeObject(descListOb));
         }
 
+        public void SortByStateLagestArea()
+        {
+            var listOb = JsonConvert.DeserializeObject<List<JsonObjectForSateCensus>>(CsvToJSON());
+            var descListOb = listOb.OrderBy(x => x.AreaInSqKm);
+            Console.WriteLine(JsonConvert.SerializeObject(descListOb));
+        }
+
     }
 }
