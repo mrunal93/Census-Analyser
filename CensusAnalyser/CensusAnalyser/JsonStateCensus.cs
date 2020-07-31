@@ -53,5 +53,14 @@ namespace CensusAnalyser
             var descListOfStateCode = listOfStateCode.OrderBy(y => y.StateCode);
             Console.WriteLine(JsonConvert.SerializeObject(descListOfStateCode));
         }
+       
+        public void SortByStatePopullation()
+        {
+            var listOb = JsonConvert.DeserializeObject<List<JsonObjectForSateCensus>>(CsvToJSON());
+            var descListOb = listOb.OrderBy(x => x.Population);
+            Console.WriteLine(JsonConvert.SerializeObject(descListOb));
+        }
+
+
     }
 }
