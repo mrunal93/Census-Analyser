@@ -19,8 +19,17 @@ namespace CensusAnalyser
         {
             try
             {
-                string[] numberOfRecords = File.ReadAllLines(filePath);
-                return numberOfRecords.Length -1 ;
+                 int count = 0;
+                 string[] data = File.ReadAllLines(filePath);
+                 IEnumerable<string> records = data;
+                 List<string> recordsList = new List<string>();
+                 foreach (var elements in records)
+                 {
+                    count++;
+                    recordsList.Add(elements);
+                 }
+                 return recordsList.Count - 1;
+                
             }
             catch (DirectoryNotFoundException e)
             {
