@@ -50,7 +50,7 @@ namespace CensusAnalyser
         public void SortByStateCode()
         {
             var listOfStateCode = JsonConvert.DeserializeObject<List<JsonStateCode>>(CsvToJSON());
-            var descListOfStateCode = listOfStateCode.OrderBy(y => y.StateCode);
+            var descListOfStateCode = listOfStateCode.OrderBy(x => x.StateCode);
             Console.WriteLine(JsonConvert.SerializeObject(descListOfStateCode));
         }
        
@@ -61,6 +61,12 @@ namespace CensusAnalyser
             Console.WriteLine(JsonConvert.SerializeObject(descListOb));
         }
 
+        public void SortByStatePopullationDensity()
+        {
+            var listOb = JsonConvert.DeserializeObject<List<JsonObjectForSateCensus>>(CsvToJSON());
+            var descListOb = listOb.OrderBy(x => x.DensityPerSqKm);
+            Console.WriteLine(JsonConvert.SerializeObject(descListOb));
+        }
 
     }
 }
