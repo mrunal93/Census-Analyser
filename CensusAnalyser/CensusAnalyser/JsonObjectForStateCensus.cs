@@ -4,11 +4,12 @@ using System.Text;
 
 namespace CensusAnalyser
 {
-    class JsonObj
+    public class JsonObjectForSateCensus
     {
         public string State { get; set; }
         public string Population { get; set; }
         public string AreaInSqKm { get; set; }
         public string DensityPerSqKm { get; set; }
+        public string StateCode { get; set; }
     }
 }
