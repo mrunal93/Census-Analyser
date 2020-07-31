@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace CensusAnalyser
@@ -17,33 +18,40 @@ namespace CensusAnalyser
         public string CsvToJSON()
         {
             var csv = new List<string[]>();
-            var lines = File.ReadAllLines(path);
+            var csvData = File.ReadAllLines(path);
 
-            foreach (string line in lines)
+            foreach (string line in csvData)
                 csv.Add(line.Split(','));
 
-            var properties = lines[0].Split(',');
+            var properties = csvData[0].Split(',');
 
-            var listObjResult = new List<Dictionary<string, string>>();
+            var listStateCensus = new List<Dictionary<string, string>>();
 
-            for (int rows = 1; rows < lines.Length; rows++)
+            for (int rows = 1; rows < csvData.Length; rows++)
             {
                 var objResult = new Dictionary<string, string>();
                 for (int columns = 0; columns < properties.Length; columns++)
                     objResult.Add(properties[columns], csv[rows][columns]);
 
-                listObjResult.Add(objResult);
+                listStateCensus.Add(objResult);
             }
-            return JsonConvert.SerializeObject(listObjResult);
+            return JsonConvert.SerializeObject(listStateCensus);
             
         }
 
 
         public void SortByState()
         {
-            var listOb = JsonConvert.DeserializeObject<List<JsonObj>>(CsvToJSON());
+            var listOb = JsonConvert.DeserializeObject<List<JsonObjectForSateCensus>>(CsvToJSON());
             var descListOb = listOb.OrderBy(x => x.State);
             Console.WriteLine(JsonConvert.SerializeObject(descListOb));
+        }
+
+        public void SortByStateCode()
+        {
+            var listOfStateCode = JsonConvert.DeserializeObject<List<JsonStateCode>>(CsvToJSON());
+            var descListOfStateCode = listOfStateCode.OrderBy(y => y.StateCode);
+            Console.WriteLine(JsonConvert.SerializeObject(descListOfStateCode));
         }
     }
 }
