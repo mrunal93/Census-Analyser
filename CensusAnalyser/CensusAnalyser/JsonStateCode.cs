@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CensusAnalyser
 {
-    class JsonStateCode
+    public class JsonStateCode
     {
         public string StateName { get; set; } 
         public string TIN { get; set; }
