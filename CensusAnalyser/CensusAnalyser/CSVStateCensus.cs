@@ -7,8 +7,15 @@ namespace CensusAnalyser
 {
     public class CSVStateCensus
     {
-        readonly string path;
-        readonly string wrongPath;
+        private string wrongPath;
+        private string path;
+        
+        public CSVStateCensus(string path,string wrongPath)
+        {
+            this.path = path;
+            this.wrongPath = wrongPath;
+        }
+
         public static int GetRecord(string path )
         {
             

@@ -7,10 +7,11 @@ namespace CensusAnalyser
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Indian Census Analyser");
-            string FILE_PATH = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\IndiaStateCensusData.csv";
-            int csvStateCensusRecords = CSVStateCensus.GetRecord(FILE_PATH);
-            int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(FILE_PATH);
-            Console.WriteLine("Fetch CSV data for State Census {0} \n state Census Data {1}",csvStateCensusRecords,stateCensusRecords );
+            string FILE_PATH = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\Resources\IndiaStateCensusData.csv";
+            //int csvStateCensusRecords = CSVStateCensus.GetRecord(FILE_PATH);
+            //int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(FILE_PATH);
+           // Console.WriteLine("Fetch CSV data for State Census {0} \n state Census Data {1}",csvStateCensusRecords,stateCensusRecords );
+            new JsonStateCensus(FILE_PATH).SortByState();
         }
     }
 }
