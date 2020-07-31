@@ -13,6 +13,9 @@ namespace CensusAnalyser
             new JsonStateCensus(FILE_PATH_STATE_CENSUS).SortByState();
             Console.WriteLine("  \n   \n  ");
             new JsonStateCensus(FILE_PATH_STATE_CODE).SortByStateCode();
+            Console.WriteLine("  \n   \n  ");
+            new JsonStateCensus(FILE_PATH_STATE_CENSUS).SortByStatePopullation();
+
 
             //int csvStateCensusRecords = CSVStateCensus.GetRecord(FILE_PATH);
             //int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(FILE_PATH);
