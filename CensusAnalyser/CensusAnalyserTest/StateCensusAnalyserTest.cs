@@ -162,8 +162,5 @@ namespace CensusAnalyserTest
             string firstValueFromCsv = jArray[0]["LandArea"].ToString();
             Assert.AreEqual("294207.53", firstValueFromCsv);
         }
-
-
-
     }
 }
