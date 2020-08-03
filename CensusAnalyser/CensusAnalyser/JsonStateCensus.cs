@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CensusAnalyser
 {
-    class JsonStateCensus
+    public class JsonStateCensus : ICsvHelper
     {
         string path;
         public JsonStateCensus(string path)
@@ -40,39 +40,39 @@ namespace CensusAnalyser
         }
 
 
-        public void SortByState()
+        public string SortByState()
         {
-            var listOb = JsonConvert.DeserializeObject<List<JsonObjectForSateCensus>>(CsvToJSON());
+            var listOb = JsonConvert.DeserializeObject<List<CensusDAO>>(CsvToJSON());
             var descListOb = listOb.OrderBy(x => x.State);
-            Console.WriteLine(JsonConvert.SerializeObject(descListOb));
+            return JsonConvert.SerializeObject(descListOb);
         }
 
-        public void SortByStateCode()
+        public string SortByStateCode()
         {
-            var listOfStateCode = JsonConvert.DeserializeObject<List<JsonStateCode>>(CsvToJSON());
+            var listOfStateCode = JsonConvert.DeserializeObject<List<CensusDAO>>(CsvToJSON());
             var descListOfStateCode = listOfStateCode.OrderBy(x => x.StateCode);
-            Console.WriteLine(JsonConvert.SerializeObject(descListOfStateCode));
+            return JsonConvert.SerializeObject(descListOfStateCode);
         }
        
-        public void SortByStatePopullation()
+        public string SortByStatePopullation()
         {
-            var listOb = JsonConvert.DeserializeObject<List<JsonObjectForSateCensus>>(CsvToJSON());
+            var listOb = JsonConvert.DeserializeObject<List<CensusDAO>>(CsvToJSON());
             var descListOb = listOb.OrderBy(x => x.Population);
-            Console.WriteLine(JsonConvert.SerializeObject(descListOb));
+            return JsonConvert.SerializeObject(descListOb);
         }
 
-        public void SortByStatePopullationDensity()
+        public string SortByStatePopullationDensity()
         {
-            var listOb = JsonConvert.DeserializeObject<List<JsonObjectForSateCensus>>(CsvToJSON());
+            var listOb = JsonConvert.DeserializeObject<List<CensusDAO>>(CsvToJSON());
             var descListOb = listOb.OrderBy(x => x.DensityPerSqKm);
-            Console.WriteLine(JsonConvert.SerializeObject(descListOb));
+            return JsonConvert.SerializeObject(descListOb);
         }
 
-        public void SortByStateLagestArea()
+        public string SortByStateLagestArea()
         {
-            var listOb = JsonConvert.DeserializeObject<List<JsonObjectForSateCensus>>(CsvToJSON());
+            var listOb = JsonConvert.DeserializeObject<List<CensusDAO>>(CsvToJSON());
             var descListOb = listOb.OrderBy(x => x.AreaInSqKm);
-            Console.WriteLine(JsonConvert.SerializeObject(descListOb));
+            return JsonConvert.SerializeObject(descListOb);
         }
 
     }
