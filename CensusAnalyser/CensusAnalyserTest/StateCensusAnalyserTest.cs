@@ -112,5 +112,17 @@ namespace CensusAnalyserTest
             string firstValueFromCsv = jArray[0]["State"].ToString();
             Assert.AreEqual("Alabama", firstValueFromCsv);
         }
+
+        [Test]
+        public void UCStateCodeData_WhenLoaded_ShouldReturnSortedResultByPopulation()
+        {
+            JsonStateCensus jsonState = new JsonStateCensus(US_STATE_CENSUS);
+            string jsonData = jsonState.SortUSCensusDataByPopulousState();
+            JArray jArray = JArray.Parse(jsonData);
+            string firstValueFromCsv = jArray[0]["Population"].ToString();
+            Assert.AreEqual("4779736", firstValueFromCsv);
+        }
+
+
     }
 }

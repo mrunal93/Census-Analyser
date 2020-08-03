@@ -75,5 +75,11 @@ namespace CensusAnalyser
             return JsonConvert.SerializeObject(descListOb);
         }
 
+        public string SortUSCensusDataByPopulousState()
+        {
+            var listOb = JsonConvert.DeserializeObject<List<CensusDAO>>(CsvToJSON());
+            var ascListOb = listOb.OrderBy(x => x.Population);
+            return JsonConvert.SerializeObject(ascListOb);
+        }
     }
 }
