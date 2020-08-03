@@ -120,8 +120,49 @@ namespace CensusAnalyserTest
             string jsonData = jsonState.SortUSCensusDataByPopulousState();
             JArray jArray = JArray.Parse(jsonData);
             string firstValueFromCsv = jArray[0]["Population"].ToString();
-            Assert.AreEqual("4779736", firstValueFromCsv);
+            Assert.AreEqual("1052567", firstValueFromCsv);
         }
+
+        [Test]
+        public void UCStateCodeDataPopulationDensity_WhenLoaded_ShouldReturnSortedResultByPopulationDensity()
+        {
+            JsonStateCensus jsonState = new JsonStateCensus(US_STATE_CENSUS);
+            string jsonData = jsonState.SortUSCensusDataByPopulousDensity();
+            JArray jArray = JArray.Parse(jsonData);
+            string firstValueFromCsv = jArray[0]["PopulationDensity"].ToString();
+            Assert.AreEqual("0.46", firstValueFromCsv);
+        }
+
+        [Test]
+        public void UCStateCodeDataTotalArea_WhenLoaded_ShouldReturnSortedResultByTotalArea()
+        {
+            JsonStateCensus jsonState = new JsonStateCensus(US_STATE_CENSUS);
+            string jsonData = jsonState.SortUSCensusDataByTotalArea();
+            JArray jArray = JArray.Parse(jsonData);
+            string firstValueFromCsv = jArray[0]["TotalArea"].ToString();
+            Assert.AreEqual("104655.80", firstValueFromCsv);
+        }
+
+        [Test]
+        public void UCStateCodeDataWaterArea_WhenLoaded_ShouldReturnSortedResultByWaterArea()
+        {
+            JsonStateCensus jsonState = new JsonStateCensus(US_STATE_CENSUS);
+            string jsonData = jsonState.SortUSCensusDataByWaterArea();
+            JArray jArray = JArray.Parse(jsonData);
+            string firstValueFromCsv = jArray[0]["WaterArea"].ToString();
+            Assert.AreEqual("1026.21", firstValueFromCsv);
+        }
+
+        [Test]
+        public void UCStateCodeDataLandArea_WhenLoaded_ShouldReturnSortedResultByLandArea()
+        {
+            JsonStateCensus jsonState = new JsonStateCensus(US_STATE_CENSUS);
+            string jsonData = jsonState.SortUSCensusDataByWaterArea();
+            JArray jArray = JArray.Parse(jsonData);
+            string firstValueFromCsv = jArray[0]["LandArea"].ToString();
+            Assert.AreEqual("294207.53", firstValueFromCsv);
+        }
+
 
 
     }
