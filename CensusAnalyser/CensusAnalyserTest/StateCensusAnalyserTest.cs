@@ -81,6 +81,16 @@ namespace CensusAnalyserTest
             Assert.AreEqual(CensusAnalyserException.ExceptionType.HEADER_NOT_MATCH, exception.type);
         }
 
-        
+        [Test]
+        public void GivenIndianStateCensusCodeData_WhenLoaded_ShouldReturnStateSortedResult()
+        {
+            JsonStateCensus jsonState = new JsonStateCensus(INDIAN_CENSUS_FILEPATH);
+            string jsonData = jsonState.SortByState();
+            JArray jArray = JArray.Parse(jsonData);
+            string firstValueFromCsv = jArray[0]["State"].ToString();
+            Assert.AreEqual("Andra Pradesh", firstValueFromCsv);
+
+
+        }
     }
 }
