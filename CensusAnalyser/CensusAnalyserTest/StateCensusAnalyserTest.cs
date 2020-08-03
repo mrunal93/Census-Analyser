@@ -88,7 +88,7 @@ namespace CensusAnalyserTest
             string jsonData = jsonState.SortByState();
             JArray jArray = JArray.Parse(jsonData);
             string firstValueFromCsv = jArray[0]["State"].ToString();
-            Assert.AreEqual("Andra Pradesh", firstValueFromCsv);
+            Assert.AreEqual("Andhra Pradesh", firstValueFromCsv);
 
 
         }
