@@ -11,7 +11,7 @@ namespace CensusAnalyserTest
         string INDIAN_CENSUS_FILEPATH = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\Resources\IndiaStateCensusData.csv";
         string WRONG_FILEPATH = @"C:\Users\Admin\IndiaStateCensusData";
         string WRONG_PATH_CSVFILE_NAME = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\StateCensusData";
-
+        string US_STATE_CENSUS = @"C:\Users\Admin\Documents\Census-Analyser\CensusAnalyser\CensusAnalyser\Resources\USCensusData.csv";
       
 
         [Test]
@@ -91,6 +91,26 @@ namespace CensusAnalyserTest
             Assert.AreEqual("Andhra Pradesh", firstValueFromCsv);
 
 
+        }
+
+        [Test]
+        public void GivenIndianStateCodeData_WhenLoaded_ShouldReturnStateSortedResult()
+        {
+            JsonStateCensus jsonState = new JsonStateCensus(INDIAN_STATE_CODE);
+            string jsonData = jsonState.SortByState();
+            JArray jArray = JArray.Parse(jsonData);
+            string firstValueFromCsv = jArray[0]["StateName"].ToString();
+            Assert.AreEqual("Andaman and Nicobar Islands", firstValueFromCsv);
+        }
+
+        [Test]
+        public void UCStateCodeData_WhenLoaded_ShouldReturnStateSortedResult()
+        {
+            JsonStateCensus jsonState = new JsonStateCensus(US_STATE_CENSUS);
+            string jsonData = jsonState.SortByState();
+            JArray jArray = JArray.Parse(jsonData);
+            string firstValueFromCsv = jArray[0]["State"].ToString();
+            Assert.AreEqual("Alabama", firstValueFromCsv);
         }
     }
 }
