@@ -39,7 +39,6 @@ namespace CensusAnalyser
             
         }
 
-
         public string SortByState()
         {
             var listOb = JsonConvert.DeserializeObject<List<CensusDAO>>(CsvToJSON());
