@@ -18,7 +18,6 @@ namespace CensusAnalyser
 
         public static int GetRecord(string path )
         {
-            
                 if (!path.EndsWith(".csv"))
                 {
                 throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILENAME,"INvalid File Name");
@@ -42,7 +41,6 @@ namespace CensusAnalyser
         {
             string[] noOfRecordsForIndianCensus = File.ReadAllLines(path);
             return noOfRecordsForIndianCensus.Length - 1;
-           
         }
 
 

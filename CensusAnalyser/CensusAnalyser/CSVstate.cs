@@ -7,14 +7,18 @@ namespace CensusAnalyser
 {
     public class CSVstate
     {
-        readonly string path;
-        readonly string wrongPath;
-        public static int GetRecord(string path)
+        public static int  GetRecord(string path,string wrongPath)
         {
-
+            if (wrongPath != null)
+            {
+                if (path != wrongPath)
+                {
+                    throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILEPATH, "This is Wrong File Path");
+                }
+            }
             if (!path.EndsWith(".csv"))
             {
-                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILENAME, "INvalid File Name");
+                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILENAME, "Invalid File Name");
             }
             int count = 0;
             string[] data = File.ReadAllLines(path);
