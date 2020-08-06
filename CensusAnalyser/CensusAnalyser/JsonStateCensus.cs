@@ -76,28 +76,28 @@ namespace CensusAnalyser
 
         public string SortUSCensusDataByPopulousState()
         {
-            var listOb = JsonConvert.DeserializeObject<List<CensusDAO>>(CsvToJSON());
+            var listOb = JsonConvert.DeserializeObject<List<CsvUsCensusModel>>(CsvToJSON());
             var ascListOb = listOb.OrderBy(x => x.Population);
             return JsonConvert.SerializeObject(ascListOb);
         }
 
         public string SortUSCensusDataByPopulousDensity()
         {
-            var listOb = JsonConvert.DeserializeObject<List<CensusDAO>>(CsvToJSON());
+            var listOb = JsonConvert.DeserializeObject<List<CsvUsCensusModel>>(CsvToJSON());
             var ascListOb = listOb.OrderBy(x => x.PopulationDensity);
             return JsonConvert.SerializeObject(ascListOb);
         }
 
         public string SortUSCensusDataByTotalArea()
         {
-            var listOb = JsonConvert.DeserializeObject<List<CensusDAO>>(CsvToJSON());
+            var listOb = JsonConvert.DeserializeObject<List<CsvUsCensusModel>>(CsvToJSON());
             var ascListOb = listOb.OrderBy(x => x.TotalArea);
             return JsonConvert.SerializeObject(ascListOb);
         }
 
         public string SortUSCensusDataByWaterArea()
         {
-            var listOb = JsonConvert.DeserializeObject<List<CensusDAO>>(CsvToJSON());
+            var listOb = JsonConvert.DeserializeObject<List<CsvUsCensusModel>>(CsvToJSON());
             var ascListOb = listOb.OrderBy(x => x.WaterArea);
             return JsonConvert.SerializeObject(ascListOb);
         }
@@ -108,5 +108,6 @@ namespace CensusAnalyser
             var ascListOb = listOb.OrderBy(x => x.LandArea);
             return JsonConvert.SerializeObject(ascListOb);
         }
+
     }
 }

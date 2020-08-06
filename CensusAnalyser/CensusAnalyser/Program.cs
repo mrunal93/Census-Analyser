@@ -21,7 +21,7 @@ namespace CensusAnalyser
             Console.WriteLine("  \n   \n  ");
             new JsonStateCensus(FILE_PATH_STATE_CENSUS).SortByStateLagestArea();
 
-            new MostPopularState(FILE_PATH_STATE_CENSUS,FILE_PATH_US_STATE_CENSUS).CombilneCsvFile();
+            new Merging(FILE_PATH_STATE_CENSUS,FILE_PATH_STATE_CODE).CombilneCsvFile();
 
             //int csvStateCensusRecords = CSVStateCensus.GetRecord(FILE_PATH);
             //int stateCensusRecords = StateCensusAnalyser.GetStateCensusRecord(FILE_PATH);

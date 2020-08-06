@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace CensusAnalyser
 {
-    public class MostPopularState
+    public class Merging
     {
 
         readonly string pathForFirstCSv, pathForSecondCsv;
@@ -14,7 +14,7 @@ namespace CensusAnalyser
         private string merge_file;
         private int count;
 
-        public  MostPopularState(string pathForFirstCsv, string pathForSecondCSv)
+        public  Merging(string pathForFirstCsv, string pathForSecondCSv)
         {
             this.pathForFirstCSv = pathForFirstCsv;
             this.pathForSecondCsv = pathForSecondCSv;
@@ -30,19 +30,16 @@ namespace CensusAnalyser
             {
                 count = 0;
                 string[] readCsvFileSecond = csvFileSecond[length].Split(',');
-                for ( int lengthTwo=1; lengthTwo < csvFileFirst.Length; length++)
+                for ( int lengthTwo=1; lengthTwo < csvFileFirst.Length; lengthTwo++)
                 {
                     string[] readCsvFileFirst = csvFileFirst[lengthTwo].Split(',');
-
                 }
 
                 if (count == 0)
                 {
-                    
                     string add = String.Concat(csvFileFirst[length]);
                     line.Add(add);
                 }
-
                 File.WriteAllLines(merge_file, line);
             }
             Console.WriteLine(" ");
