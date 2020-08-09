@@ -1,52 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace CensusAnalyser
 {
     public class CSVStateCensus
     {
-        private string wrongPath;
-        private string path;
-        
-        public CSVStateCensus(string path,string wrongPath)
+        public static void GetRecordForCsvFile(string path,[Optional] string nullPath )
         {
-            this.path = path;
-            this.wrongPath = wrongPath;
-        }
-
-        public static int GetRecord(string path )
-        {
-            
-                if (!path.EndsWith(".csv"))
+            if (nullPath != null)
+            {
+                if (path != nullPath)
                 {
+                    throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILEPATH, "File Path is Null");
+                }
+            }
+            if (!path.EndsWith(".csv"))
+            {
                 throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INVALID_FILENAME,"INvalid File Name");
-                }
-                int count = 0;
-                string[] data = File.ReadAllLines(path);
-                IEnumerable<string> record = data;
-                foreach (var element in record)
+            }
+            string[] data = File.ReadAllLines(path);
+            IEnumerable<string> record = data;
+            foreach (var element in record)
+            {
+                if (!element.Contains(":"))
                 {
-                    if (!element.Contains(":"))
-                    {
-                        
-                        throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT, "Delimeter is Incorrect ");
-                    }
-                    
+                    throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.DELIMITER_INCORRECT, "Delimeter is Incorrect ");
                 }
-                return count - 1;
+            }  
         }
 
-        public static int GetReordsForCsvFile(string path)
+        public static int GetLenghtOFCsvFile(string path)
         {
             string[] noOfRecordsForIndianCensus = File.ReadAllLines(path);
             return noOfRecordsForIndianCensus.Length - 1;
-           
         }
-
-
-        public static void WrongPath(string path,string wrongPath)
+        
+        public static void WrongPath(string path, string wrongPath)
         {
             if (path != wrongPath)
             {
