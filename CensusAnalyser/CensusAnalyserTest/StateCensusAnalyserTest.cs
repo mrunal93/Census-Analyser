@@ -69,7 +69,7 @@ namespace CensusAnalyserTest
         [Test]
         public void UCStateCodeData_WhenLoaded_ShouldReturnSortedResultByPopulation()
         {
-            JsonStateCensus jsonState = new JsonStateCensus(US_STATE_CENSUS);
+            JsonCensusAnalyser jsonState = new JsonCensusAnalyser(US_STATE_CENSUS);
             string jsonData = jsonState.SortUSCensusDataByPopulousState();
             JArray jArray = JArray.Parse(jsonData);
             string firstValueFromCsv = jArray[0]["Population"].ToString();
@@ -79,7 +79,7 @@ namespace CensusAnalyserTest
         [Test]
         public void UCStateCodeDataPopulationDensity_WhenLoaded_ShouldReturnSortedResultByPopulationDensity()
         {
-            JsonStateCensus jsonState = new JsonStateCensus(US_STATE_CENSUS);
+            JsonCensusAnalyser jsonState = new JsonCensusAnalyser(US_STATE_CENSUS);
             string jsonData = jsonState.SortUSCensusDataByPopulousDensity();
             JArray jArray = JArray.Parse(jsonData);
             string firstValueFromCsv = jArray[0]["PopulationDensity"].ToString();
@@ -89,7 +89,7 @@ namespace CensusAnalyserTest
         [Test]
         public void UCStateCodeDataTotalArea_WhenLoaded_ShouldReturnSortedResultByTotalArea()
         {
-            JsonStateCensus jsonState = new JsonStateCensus(US_STATE_CENSUS);
+            JsonCensusAnalyser jsonState = new JsonCensusAnalyser(US_STATE_CENSUS);
             string jsonData = jsonState.SortUSCensusDataByTotalArea();
             JArray jArray = JArray.Parse(jsonData);
             string firstValueFromCsv = jArray[0]["TotalArea"].ToString();
@@ -99,7 +99,7 @@ namespace CensusAnalyserTest
         [Test]
         public void UCStateCodeDataWaterArea_WhenLoaded_ShouldReturnSortedResultByWaterArea()
         {
-            JsonStateCensus jsonState = new JsonStateCensus(US_STATE_CENSUS);
+            JsonCensusAnalyser jsonState = new JsonCensusAnalyser(US_STATE_CENSUS);
             string jsonData = jsonState.SortUSCensusDataByWaterArea();
             JArray jArray = JArray.Parse(jsonData);
             string firstValueFromCsv = jArray[0]["WaterArea"].ToString();
@@ -109,7 +109,7 @@ namespace CensusAnalyserTest
         [Test]
         public void UCStateCodeDataLandArea_WhenLoaded_ShouldReturnSortedResultByLandArea()
         {
-            JsonStateCensus jsonState = new JsonStateCensus(US_STATE_CENSUS);
+            JsonCensusAnalyser jsonState = new JsonCensusAnalyser(US_STATE_CENSUS);
             string jsonData = jsonState.SortUSCensusDataByWaterArea();
             JArray jArray = JArray.Parse(jsonData);
             string firstValueFromCsv = jArray[0]["LandArea"].ToString();

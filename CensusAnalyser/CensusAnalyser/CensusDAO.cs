@@ -30,7 +30,7 @@ namespace CensusAnalyser
             this.DensityPerSqKm = cSVIndianSateCensusModel.DensityPerSqKm;
         }
 
-        public CensusDAO(CsvIndianSateCode csvIndianSateCode)
+        public CensusDAO(CsvIndianSateCodeModel csvIndianSateCode)
         {
             this.SrNo = csvIndianSateCode.SrNo;
             this.TIN = csvIndianSateCode.TIN;

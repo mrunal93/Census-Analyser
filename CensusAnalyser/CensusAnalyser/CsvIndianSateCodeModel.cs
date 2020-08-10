@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CensusAnalyser
 {
-    public class CsvIndianSateCode
+    public class CsvIndianSateCodeModel
     {
         public string SrNo { get; set; }
         public string StateName { get; set; }
